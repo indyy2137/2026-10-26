@@ -2,6 +2,8 @@ package dev.indy.formularz;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -10,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.cbTerms.setOnCheckedChangeListener((v, checked) -> this.btnSubmit.setEnabled(checked));
         this.btnPickDate.setOnClickListener(v -> this.openDatePicker());
-        this.btnSubmit.setOnClickListener(v-> this.buildSummary());
+        this.btnSubmit.setOnClickListener(v-> {
+            if(this.validateForm()) this.submitForm();
+        });
 
         this.sbLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -73,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        this.spCourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                if(position > 0) tvSummary.setText("");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
         this.setupCourseSpinner();
@@ -105,6 +120,41 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private boolean validateForm() {
+        String name = this.etName.getText().toString().trim();
+        if(name.isBlank()) {
+            this.etName.setError(this.getString(R.string.errorName));
+            this.etName.requestFocus();
+
+            return false;
+        }
+
+        String email = this.etEmail.getText().toString().trim();
+        if(email.isBlank()) {
+            this.etEmail.setError(this.getString(R.string.errorEmail));
+            this.etEmail.requestFocus();
+
+            return false;
+        }
+
+        if(this.birthDate.isBlank()) {
+            Toast.makeText(this, this.getString(R.string.errorDate), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(this.spCourse.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, this.getString(R.string.errorCourse), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(this.rgMode.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, this.getString(R.string.errorMode), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
     private String getModeText() {
         Integer id = this.rgMode.getCheckedRadioButtonId();
 
@@ -118,6 +168,10 @@ public class MainActivity extends AppCompatActivity {
         return this.swNewsletter.isChecked()
             ? this.getString(R.string.yesShort)
             : this.getString(R.string.noShort);
+    }
+
+    private void submitForm() {
+        this.buildSummary();
     }
 
     private void buildSummary() {
