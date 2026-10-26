@@ -1,5 +1,6 @@
 package dev.indy.formularz;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         this.cbTerms.setOnCheckedChangeListener((v, checked) -> this.btnSubmit.setEnabled(checked));
         this.btnPickDate.setOnClickListener(v -> this.openDatePicker());
         this.btnSubmit.setOnClickListener(v-> {
-            if(this.validateForm()) this.submitForm();
+            if(this.validateForm()) this.askForConfirmation();
         });
 
         this.sbLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -170,8 +172,25 @@ public class MainActivity extends AppCompatActivity {
             : this.getString(R.string.noShort);
     }
 
+    private void askForConfirmation() {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.confirmTitle)
+            .setMessage(R.string.confirmMessage)
+            .setPositiveButton(R.string.yes, (dialog, which) -> this.submitForm())
+            .setNegativeButton(R.string.no, null)
+            .show();
+    }
+
     private void submitForm() {
         this.buildSummary();
+
+        Snackbar.make(this.findViewById(R.id.main), R.string.sent, Snackbar.LENGTH_LONG)
+            .setAction(R.string.undo, v -> this.undoSubmit())
+            .show();
+    }
+
+    private void undoSubmit() {
+        this.tvSummary.setText("");
     }
 
     private void buildSummary() {
