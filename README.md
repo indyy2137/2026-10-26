@@ -10,3 +10,5 @@ Zbuduj formularz z rozdziału 8. Oddajesz w pięciu commitach:
 
 W `README.md` odpowiedz: **dlaczego przy `SeekBar` nie dało się użyć lambdy,
 a przy `CheckBox` tak?**
+
+Ponieważ, interfejst `SeekBar.OnSeekBarChangeListener` wymaga trzy metody, a lambda działa tylko gdy interfejs wymaga tylko jednej.
