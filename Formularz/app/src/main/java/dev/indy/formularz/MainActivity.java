@@ -1,6 +1,15 @@
 package dev.indy.formularz;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +17,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
+import java.util.Calendar;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
+
+    private EditText etName, etEmail;
+    private Button btnPickDate, btnSubmit;
+    private Spinner spCourse;
+    private RadioGroup rgMode;
+    private SeekBar sbLevel;
+    private TextView tvLevelValue, tvSummary;
+    private MaterialSwitch swNewsletter;
+    private CheckBox cbTerms;
+
+    private String birthDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +45,80 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        this.etName = this.findViewById(R.id.etName);
+        this.etEmail = this.findViewById(R.id.etEmail);
+        this.btnPickDate = this.findViewById(R.id.btnBirthDate);
+        this.btnSubmit = this.findViewById(R.id.btnSubmit);
+        this.spCourse = this.findViewById(R.id.spCourse);
+        this.rgMode = this.findViewById(R.id.rgMode);
+        this.sbLevel = this.findViewById(R.id.sbLevel);
+        this.tvLevelValue = this.findViewById(R.id.tvLevelValue);
+        this.tvSummary = this.findViewById(R.id.tvSummary);
+        this.swNewsletter = this.findViewById(R.id.swNewsletter);
+        this.cbTerms = this.findViewById(R.id.cbTerms);
+
+        this.cbTerms.setOnCheckedChangeListener((v, checked) -> this.btnSubmit.setEnabled(checked));
+        this.btnPickDate.setOnClickListener(v -> this.openDatePicker());
+        this.btnSubmit.setOnClickListener(v-> this.buildSummary());
+
+        this.sbLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvLevelValue.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+    }
+
+    private void openDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+
+        DatePickerDialog dialog = new DatePickerDialog(this,
+            (view, year, month, dayOfMonth) -> {
+                this.birthDate = String.format(Locale.US, "%04d-%02d-%02d",
+                    year, month + 1, dayOfMonth
+                );
+                this.btnPickDate.setText(this.birthDate);
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+        dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        dialog.show();
+    }
+
+    private String getModeText() {
+        Integer id = this.rgMode.getCheckedRadioButtonId();
+
+        if(id.equals(R.id.rbOnsite)) return this.getString(R.string.modeOnSite);
+        else if(id.equals(R.id.rbRemote)) return this.getString(R.string.modeRemote);
+
+        return this.getString(R.string.modeRemote);
+    }
+
+    private String getNewsletterText() {
+        return this.swNewsletter.isChecked()
+            ? this.getString(R.string.yesShort)
+            : this.getString(R.string.noShort);
+    }
+
+    private void buildSummary() {
+        this.tvSummary.setText(this.getString(R.string.summaryFormat,
+            this.etName.getText().toString().trim(),
+            this.etEmail.getText().toString().trim(),
+            this.birthDate,
+            this.spCourse.getSelectedItem().toString(),
+            this.getModeText(),
+            this.sbLevel.getProgress(),
+            this.getNewsletterText()
+        ));
     }
 }
