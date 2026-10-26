@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Zapisy na kurs</string>
+
+    <string name="header">Zapisy na kurs</string>
+    <string name="labelName">Imię i nazwisko</string>
+    <string name="labelEmail">Adres e-mail</string>
+    <string name="labelBirthDate">Data urodzenia</string>
+    <string name="labelCourse">Kurs</string>
+    <string name="labelMode">Tryb zajęć</string>
+    <string name="labelLevel">Poziom zaawansowania</string>
+
+    <string name="hintName">Jan Kowalski</string>
+    <string name="hintEmail">jan@przyklad.pl</string>
+    <string name="btnPickDate">Wybierz datę</string>
+    <string name="modeOnSite">Stacjonarny</string>
+    <string name="modeRemote">Zdalny</string>
+    <string name="newsletter">Chcę dostawać newsletter</string>
+    <string name="terms">Akceptuję regulamin</string>
+    <string name="btnSubmit">WYŚLIJ ZGŁOSZENIE</string>
+
+    <string name="errorName">Podaj imię i nazwisko</string>
+    <string name="errorEmail">Niepoprawny adres e-mail</string>
+    <string name="errorDate">Wybierz datę urodzenia</string>
+    <string name="errorCourse">Wybierz kurs z listy</string>
+    <string name="errorMode">Zaznacz tryb zajęć</string>
+
+    <string name="confirmTitle">Wysłać zgłoszenie?</string>
+    <string name="confirmMessage">Sprawdź dane przed wysłaniem. Tej operacji nie da się cofnąć po zamknięciu aplikacji.</string>
+    <string name="yes">Tak, wyślij</string>
+    <string name="no">Popraw</string>
+
+    <string name="sent">Zgłoszenie wysłane</string>
+    <string name="undo">Cofnij</string>
+
+    <string name="summaryFormat">%1$s\n%2$s\nUr. %3$s\nKurs: %4$s\nTryb: %5$s\nPoziom: %6$d/10\nNewsletter: %7$s</string>
+    <string name="yesShort">tak</string>
+    <string name="noShort">nie</string>
+
+    <string-array name="courses">
+        <item>-- wybierz kurs --</item>
+        <item>Programowanie w Javie</item>
+        <item>Aplikacje mobilne</item>
+        <item>Bazy danych</item>
+        <item>Sieci komputerowe</item>
+    </string-array>
+</resources>
