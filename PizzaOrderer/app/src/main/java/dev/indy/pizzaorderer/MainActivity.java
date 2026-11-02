@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Map<Integer, Boolean> _toppings;
 
+    private int _prevPizzaSizeId, _prevPizzaAmount;
+    private boolean _prevPizzaForKrukChecked;
+    private String _prevAddress;
+    private Map<Integer, Boolean> _prevToppingsStates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +159,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clear() {
+        // Save current state
+        this._prevPizzaSizeId = this._rgPizzaSize.getCheckedRadioButtonId();
+
+        this._prevToppingsStates = new HashMap<>();
+        for(int id : this._toppings.keySet()) {
+            CheckBox cb = this.findViewById(id);
+            this._prevToppingsStates.put(id, cb.isChecked());
+        }
+
+        this._prevPizzaAmount = this._sbPizzaAmount.getProgress();
+        this._prevPizzaForKrukChecked = this._cbPizzaForKruk.isChecked();
+        this._prevAddress = this._etAddress.getText().toString();
+
+        // Clear
         this._rgPizzaSize.clearCheck();
 
         for(Map.Entry<Integer, Boolean> topping : this._toppings.entrySet())
@@ -162,9 +181,24 @@ public class MainActivity extends AppCompatActivity {
         this._sbPizzaAmount.setProgress(0);
         this._cbPizzaForKruk.setChecked(true);
         this._etAddress.setText("");
+
+        Snackbar.make(this.findViewById(R.id.main), R.string.formCleared, Snackbar.LENGTH_LONG)
+            .setAction(R.string.undo, v -> this.undoClear())
+            .show();
     }
 
     private void undoSubmit() {
         this._tvResult.setText("");
+    }
+
+    private void undoClear() {
+        this._rgPizzaSize.check(this._prevPizzaSizeId);
+
+        for(Map.Entry<Integer, Boolean> topping : this._prevToppingsStates.entrySet())
+            ((CheckBox) this.findViewById(topping.getKey())).setChecked(topping.getValue());
+
+        this._sbPizzaAmount.setProgress(this._prevPizzaAmount);
+        this._cbPizzaForKruk.setChecked(this._prevPizzaForKrukChecked);
+        this._etAddress.setText(this._prevAddress);
     }
 }

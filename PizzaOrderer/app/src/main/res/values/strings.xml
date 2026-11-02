@@ -36,5 +36,6 @@
     <string name="yesClear">Tak, wyczyść</string>
     <string name="no">Anuluj</string>
     <string name="orderPlaced">Złożono zamówienie</string>
+    <string name="formCleared">Wyczyszczono formularz</string>
     <string name="undo">Cofnij</string>
 </resources>

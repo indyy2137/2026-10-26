@@ -40,3 +40,18 @@ Wybierz jeden temat albo zaproponuj własny:
 
 **O co zapytam:** który interfejs nasłuchiwania ma więcej niż jedną metodę
 i co z tego wynika dla zapisu kodu.
+
+
+# Zadanie 3 – sprzątanie po sobie
+
+Do formularza z zadania 2 dołóż przycisk **„Wyczyść formularz"**, który:
+
+- pyta o potwierdzenie przez `AlertDialog`,
+- po potwierdzeniu zeruje **wszystkie** kontrolki – pola tekstowe, `Spinner`
+  na pozycję zero, `RadioGroup` przez `clearCheck()`, `SeekBar` na zero,
+  `CheckBox` i `Switch` na niezaznaczone,
+- usuwa komunikaty błędów z pól (`setError(null)`),
+- pokazuje `Snackbar` z możliwością cofnięcia.
+
+Cofnięcie jest tu trudniejsze, niż wygląda – musisz gdzieś zapamiętać poprzedni
+stan formularza. Opisz w `README.md`, jak to rozwiązałeś.
