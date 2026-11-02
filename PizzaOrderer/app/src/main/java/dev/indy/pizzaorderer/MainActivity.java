@@ -3,7 +3,6 @@ package dev.indy.pizzaorderer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -33,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView _tvPizzaAmountValue, _tvResult;
     private CheckBox _cbPizzaForKruk;
     private EditText _etAddress;
-    private Button _btnOrder;
+    private Button _btnOrder, _btnClear;
 
-    private int[] _toppings;
+    private Map<Integer, Boolean> _toppings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +52,25 @@ public class MainActivity extends AppCompatActivity {
         this._cbPizzaForKruk = this.findViewById(R.id.cbPizzaForKruk);
         this._etAddress = this.findViewById(R.id.etAddress);
         this._btnOrder = this.findViewById(R.id.btnOrder);
+        this._btnClear = this.findViewById(R.id.btnClear);
         this._tvResult = this.findViewById(R.id.tvResult);
 
-        this._toppings = new int[]{
-            R.id.cbToppingTomatoSauce,
-            R.id.cbToppingCheese,
+        this._toppings = new HashMap<>(Map.of(
+            R.id.cbToppingTomatoSauce, true,
+            R.id.cbToppingCheese, true,
 
             // Meat
-            R.id.cbToppingHam,
-            R.id.cbToppingSalami,
-            R.id.cbToppingBacon,
-            R.id.cbToppingChicken,
+            R.id.cbToppingHam, false,
+            R.id.cbToppingSalami, false,
+            R.id.cbToppingBacon, false,
+            R.id.cbToppingChicken, false,
 
             // Vegetable
-            R.id.cbToppingCorn,
-            R.id.cbToppingOnion,
-            R.id.cbToppingShrooms,
-            R.id.cbToppingHawking,
-        };
+            R.id.cbToppingCorn, false,
+            R.id.cbToppingOnion, false,
+            R.id.cbToppingShrooms, false,
+            R.id.cbToppingHawking, false
+        ));
 
         this.addListeners();
     }
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         this._cbPizzaForKruk.setOnCheckedChangeListener((v, b) -> this._btnOrder.setEnabled(b));
         this._btnOrder.setOnClickListener(v -> this.validate());
+        this._btnClear.setOnClickListener(v -> this.askForClearConfirmation());
     }
 
     private void validate() {
@@ -112,14 +112,23 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        this.askForConfirmation();
+        this.askForSubmitConfirmation();
     }
 
-    private void askForConfirmation() {
+    private void askForSubmitConfirmation() {
         new AlertDialog.Builder(this)
-            .setTitle(R.string.confirmTitle)
-            .setMessage(R.string.confirmMessage)
-            .setPositiveButton(R.string.yes, (dialog, which) -> this.order())
+            .setTitle(R.string.submitConfirmTitle)
+            .setMessage(R.string.submitConfirmMessage)
+            .setPositiveButton(R.string.yesSubmit, (dialog, which) -> this.order())
+            .setNegativeButton(R.string.no, null)
+            .show();
+    }
+
+    private void askForClearConfirmation() {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.clearConfirmTitle)
+            .setMessage(R.string.clearConfirmMessage)
+            .setPositiveButton(R.string.yesClear, (dialog, which) -> this.clear())
             .setNegativeButton(R.string.no, null)
             .show();
     }
@@ -127,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     private void order() {
         List<String> selectedToppings = new ArrayList<>();
 
-        for(int id : this._toppings) {
+        for(int id : this._toppings.keySet()) {
             CheckBox checkbox = this.findViewById(id);
             if(checkbox.isChecked()) selectedToppings.add(checkbox.getText().toString());
         }
@@ -140,11 +149,22 @@ public class MainActivity extends AppCompatActivity {
         ));
 
         Snackbar.make(this.findViewById(R.id.main), R.string.orderPlaced, Snackbar.LENGTH_LONG)
-            .setAction(R.string.undo, v -> this.undo())
+            .setAction(R.string.undo, v -> this.undoSubmit())
             .show();
     }
 
-    private void undo() {
+    private void clear() {
+        this._rgPizzaSize.clearCheck();
+
+        for(Map.Entry<Integer, Boolean> topping : this._toppings.entrySet())
+            ((CheckBox) this.findViewById(topping.getKey())).setChecked(topping.getValue());
+
+        this._sbPizzaAmount.setProgress(0);
+        this._cbPizzaForKruk.setChecked(true);
+        this._etAddress.setText("");
+    }
+
+    private void undoSubmit() {
         this._tvResult.setText("");
     }
 }
