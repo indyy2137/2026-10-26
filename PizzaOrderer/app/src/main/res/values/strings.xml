@@ -23,4 +23,5 @@
     <string name="tvAddress">Adres dostawy</string>
     <string name="etAddress">Podaj adres dostawy</string>
     <string name="btnOrder">Zamuf Picce</string>
+    <string name="formatResult">Zamowiono %1$sx %2$s pizza z dodatkami: %3$s na adres %4$s</string>
 </resources>
