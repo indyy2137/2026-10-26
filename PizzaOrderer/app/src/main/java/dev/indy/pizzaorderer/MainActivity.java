@@ -9,13 +9,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,7 +91,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this._cbPizzaForKruk.setOnCheckedChangeListener((v, b) -> this._btnOrder.setEnabled(b));
-        this._btnOrder.setOnClickListener(v -> this.order());
+        this._btnOrder.setOnClickListener(v -> this.validate());
+    }
+
+    private void validate() {
+        if(this._rgPizzaSize.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, this.getString(R.string.errorPizzaSize), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(this._sbPizzaAmount.getProgress() == 0) {
+            Toast.makeText(this, this.getString(R.string.errorAmount), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(this._etAddress.getText().toString().isBlank()) {
+            this._etAddress.setError(this.getString(R.string.errorAddress));
+            this._etAddress.requestFocus();
+
+            return;
+        }
+
+        this.askForConfirmation();
+    }
+
+    private void askForConfirmation() {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.confirmTitle)
+            .setMessage(R.string.confirmMessage)
+            .setPositiveButton(R.string.yes, (dialog, which) -> this.order())
+            .setNegativeButton(R.string.no, null)
+            .show();
     }
 
     private void order() {
@@ -104,5 +138,13 @@ public class MainActivity extends AppCompatActivity {
             String.join(", ", selectedToppings),
             this._etAddress.getText()
         ));
+
+        Snackbar.make(this.findViewById(R.id.main), R.string.orderPlaced, Snackbar.LENGTH_LONG)
+            .setAction(R.string.undo, v -> this.undo())
+            .show();
+    }
+
+    private void undo() {
+        this._tvResult.setText("");
     }
 }

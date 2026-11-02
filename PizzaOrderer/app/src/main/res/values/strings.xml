@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">PizzaOrderer</string>
     <string name="tvPizzaSize">Rozmiar pizzy</string>
-    <string name="rdPizzaSizeSmall">Mała (25 cm)</string>
-    <string name="rdPizzaSizeMedium">Średnia (35 cm)</string>
-    <string name="rdPizzaSizeLarge">Duża (45 cm)</string>
-    <string name="rdPizzaSizeLargeWChuj">Duża w ch*j (60 cm)</string>
+    <string name="rdPizzaSizeSmall">Mała (Ø 25 cm)</string>
+    <string name="rdPizzaSizeMedium">Średnia (Ø 35 cm)</string>
+    <string name="rdPizzaSizeLarge">Duża (Ø 45 cm)</string>
+    <string name="rdPizzaSizeLargeWChuj">Duża w ch*j (Ø 60 cm)</string>
     <string name="tvPizzaToppings">Dodatki</string>
     <string name="cbToppingTomatoSauce">Sos pomnidorowy</string>
     <string name="cbToppingCheese">Syr</string>
@@ -24,4 +24,13 @@
     <string name="etAddress">Podaj adres dostawy</string>
     <string name="btnOrder">Zamuf Picce</string>
     <string name="formatResult">Zamowiono %1$sx %2$s pizza z dodatkami: %3$s na adres %4$s</string>
+    <string name="errorPizzaSize">Wybierz rozmiar pizzy</string>
+    <string name="errorAmount">Wybierz ilość pizzy</string>
+    <string name="errorAddress">Podaj adres dostawy</string>
+    <string name="confirmTitle">Złożyć zamówienie?</string>
+    <string name="confirmMessage">Sprawdź dane przed złożeniem zamówienia. Tej operacji nie da się cofnąć.</string>
+    <string name="yes">Tak, wyślij</string>
+    <string name="no">Anuluj</string>
+    <string name="orderPlaced">Złożono zamówienie</string>
+    <string name="undo">Cofnij</string>
 </resources>
