@@ -28,7 +28,7 @@
                 android:id="@+id/tvPizzaSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rozmiar pizzy"
+                android:text="@string/tvPizzaSize"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -40,38 +40,32 @@
                     android:id="@+id/rdPizzaSizeSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mała (25 cm)" />
+                    android:text="@string/rdPizzaSizeSmall" />
 
                 <RadioButton
                     android:id="@+id/rdPizzaSizeMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Średnia (35 cm)" />
+                    android:text="@string/rdPizzaSizeMedium" />
 
                 <RadioButton
                     android:id="@+id/rdPizzaSizeLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Duża (45 cm)" />
+                    android:text="@string/rdPizzaSizeLarge" />
 
                 <RadioButton
-                    android:id="@+id/rdPizzaSizLargeWChuj"
+                    android:id="@+id/rdPizzaSizeLargeWChuj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Duża w chuj (60 cm)" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
-
+                    android:text="@string/rdPizzaSizeLargeWChuj" />
             </RadioGroup>
 
             <TextView
                 android:id="@+id/tvPizzaToppings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dodatki"
+                android:text="@string/tvPizzaToppings"
                 android:textSize="24sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,11 +73,11 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:id="@+id/cbToppingTomatoSouce"
+                    android:id="@+id/cbToppingTomatoSauce"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Sos pomnidorowy"
+                    android:text="@string/cbToppingTomatoSauce"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingCheese"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -96,10 +90,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:checked="true"
-                    android:text="Syr"
-                    app:layout_constraintEnd_toStartOf="@+id/cbToppingTomatoSouce"
+                    android:text="@string/cbToppingCheese"
+                    app:layout_constraintEnd_toStartOf="@+id/cbToppingTomatoSauce"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/cbToppingTomatoSouce"
+                    app:layout_constraintStart_toEndOf="@+id/cbToppingTomatoSauce"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -107,7 +101,7 @@
                 android:id="@+id/tvPizzaToppingsMeat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Miemsne" />
+                android:text="@string/tvPizzaToppingsMeat" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -118,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="Szymka"
+                    android:text="@string/cbToppingHam"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingSalami"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -131,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:checked="false"
-                    android:text="Salami"
+                    android:text="@string/cbToppingSalami"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingHam"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@id/cbToppingHam"
@@ -147,7 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="Zboczek"
+                    android:text="@string/cbToppingBacon"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingChicken"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -160,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:checked="false"
-                    android:text="Kurczok"
+                    android:text="@string/cbToppingChicken"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingBacon"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@id/cbToppingBacon"
@@ -172,7 +166,7 @@
                 android:id="@+id/tvPizzaToppingsVegetable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ważywa" />
+                android:text="@string/tvPizzaToppingsVegetable" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -183,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="Dziki Kurkurydz"
+                    android:text="@string/cbToppingCorn"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingOnion"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -196,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:checked="false"
-                    android:text="Cipolla"
+                    android:text="@string/cbToppingOnion"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingCorn"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@id/cbToppingCorn"
@@ -213,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="Piecz Arka"
+                    android:text="@string/cbToppingShrooms"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingHawking"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -226,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:checked="false"
-                    android:text="Stiwen Hołking"
+                    android:text="@string/cbToppingHawking"
                     app:layout_constraintEnd_toStartOf="@id/cbToppingShrooms"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@id/cbToppingShrooms"
@@ -243,12 +237,12 @@
                     android:id="@+id/tvPizzaAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ilość"
+                    android:text="@string/tvPizzaAmount"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/tvPizzaAmountValue"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0"
@@ -267,28 +261,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Dodatkowa pizza dla Kruka" />
+                android:text="@string/cbPizzaForKruk" />
 
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adres dostawy"
+                android:text="@string/tvAddress"
                 android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/etAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:ems="10"
-                android:hint="Podaj adres dostawy"
+                android:hint="@string/etAddress"
                 android:inputType="text" />
 
             <Button
                 android:id="@+id/btnOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zamuf Picce" />
+                android:text="@string/btnOrder" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">PizzaOrderer</string>
+    <string name="tvPizzaSize">Rozmiar pizzy</string>
+    <string name="rdPizzaSizeSmall">Mała (25 cm)</string>
+    <string name="rdPizzaSizeMedium">Średnia (35 cm)</string>
+    <string name="rdPizzaSizeLarge">Duża (45 cm)</string>
+    <string name="rdPizzaSizeLargeWChuj">Duża w ch*j (60 cm)</string>
+    <string name="tvPizzaToppings">Dodatki</string>
+    <string name="cbToppingTomatoSauce">Sos pomnidorowy</string>
+    <string name="cbToppingCheese">Syr</string>
+    <string name="tvPizzaToppingsMeat">Miemsne</string>
+    <string name="cbToppingHam">Szymka</string>
+    <string name="cbToppingSalami">Salami</string>
+    <string name="cbToppingBacon">Zboczek</string>
+    <string name="cbToppingChicken">Kurczok</string>
+    <string name="tvPizzaToppingsVegetable">Ważywa</string>
+    <string name="cbToppingCorn">Dziki Kurkurydz</string>
+    <string name="cbToppingOnion">Cipolla</string>
+    <string name="cbToppingShrooms">Piecz Arka</string>
+    <string name="cbToppingHawking">Stiwen Hołking</string>
+    <string name="tvPizzaAmount">Ilość</string>
+    <string name="cbPizzaForKruk">Dodatkowa pizza dla Kruka</string>
+    <string name="tvAddress">Adres dostawy</string>
+    <string name="etAddress">Podaj adres dostawy</string>
+    <string name="btnOrder">Zamuf Picce</string>
 </resources>
