@@ -55,3 +55,21 @@ Do formularza z zadania 2 dołóż przycisk **„Wyczyść formularz"**, który:
 
 Cofnięcie jest tu trudniejsze, niż wygląda – musisz gdzieś zapamiętać poprzedni
 stan formularza. Opisz w `README.md`, jak to rozwiązałeś.
+
+
+# Zadanie 4 – `[bez AI]`
+
+Bez agenta i bez czatu, wyłącznie ten materiał i dokumentacja.
+
+Napisz ekran z **trzema polami** i walidacją:
+
+- waga w kilogramach (`EditText`, `numberDecimal`),
+- wzrost w centymetrach (`EditText`, `number`),
+- płeć (`RadioGroup`).
+
+Przycisk liczy BMI i pokazuje wynik razem z kategorią. Walidacja ma wychwycić:
+puste pole, wartość zero, wzrost powyżej 300 cm i brak wyboru płci.
+Każdy błąd wskazuje właściwe pole.
+
+Commit z prefiksem `[bez AI]`. Na następnych zajęciach opowiadasz, który błąd
+najtrudniej było wychwycić.

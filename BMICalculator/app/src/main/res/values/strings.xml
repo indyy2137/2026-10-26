@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="tvWeight">Waga w kilogramach</string>
+    <string name="tvHeight">Wzrost w centymetrach</string>
+    <string name="tvGender">Pełć</string>
+    <string name="etWeight">Podaj wage</string>
+    <string name="etHeight">Podaj wzrost</string>
+    <string name="rbMale">Menszczyzna</string>
+    <string name="rbFemale">Łymyn</string>
+    <string name="btnCalculate">Sprawdz czy jestes gruby</string>
+    <string name="errorWeightEmpty">Waga nie może być pusta</string>
+    <string name="errorWeightInvalid">Nieprawidłowa waga</string>
+    <string name="errorHeightEmpty">Wzrost nie może być pusty</string>
+    <string name="errorHeightInvalid">Nieprawidłowy wzrost</string>
+    <string name="errorGenderEmpty">Musisz wybrac pełć</string>
+    <string name="formatResult">BMI: %1$.2f (%2$s)</string>
+    <string name="bmiUnderweight">Ela Gawin</string>
+    <string name="bmiNormal">Warszawki koks</string>
+    <string name="bmiOverweight">Fabién</string>
+    <string name="bmiObesity1">Kometa</string>
+    <string name="bmiObesity2">Klaudeliza</string>
+    <string name="bmiObesity3">Gorlock the Destroyer</string>
+</resources>
